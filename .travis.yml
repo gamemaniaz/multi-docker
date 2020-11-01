@@ -18,3 +18,15 @@ after_success:
   - docker push gamemaniaz/multi-nginx
   - docker push gamemaniaz/multi-server
   - docker push gamemaniaz/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-southeast-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-southeast-1-150976937038
+  bucket_path: docker_multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
